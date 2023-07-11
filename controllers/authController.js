@@ -12,7 +12,7 @@ export const registerController = async (req, res) => {
     if (exist_user) {
       return res
         .status(200)
-        .send({ success: true, message: "User already exists please login" });
+        .send({ success: false, message: "User already exists please login" });
     }
 
     //hash password

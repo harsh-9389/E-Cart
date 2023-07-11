@@ -51,3 +51,13 @@ font-family: 'Poppins', sans-serif; */
     color: gray;
     border-bottom: #fff 1px solid;
 }
+
+
+/* // Register page CSS */
+.register{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    height: 70vh; 
+    flex-direction: column;
+}
