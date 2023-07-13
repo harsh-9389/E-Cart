@@ -5,7 +5,7 @@ import JWT from "jsonwebtoken";
 // register controller
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address, answer } = req.body;
 
     //check if user already exists
     const exist_user = await userModel.findOne({ email });
@@ -25,6 +25,7 @@ export const registerController = async (req, res) => {
       phone,
       address,
       password: hashedPassword,
+      answer,
     }).save();
     res
       .status(201)
@@ -95,7 +96,49 @@ export const loginController = async (req, res) => {
   }
 };
 
+// forgot password controller
+export const forgotPasswordController = async (req, res) => {
+  try {
+    const { email, answer, newPassword } = req.body;
+    if (!email || !answer || !newPassword) {
+      return res.status(400).send({
+        success: false,
+        message: "Please fill all the fields",
+      });
+    }
+
+    //check if user exists
+    const user = await userModel.findOne({ email, answer });
+    if (!user) {
+      return res.status(400).send({
+        success: false,
+        message: "Wrong email or answer",
+      });
+    }
+
+    //hash password
+    const hashedPassword = await hashPassword(newPassword);
+    await userModel.findByIdAndUpdate(user._id, { password: hashedPassword });
+    res.status(200).send({
+      success: true,
+      message: "Password changed successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error in forgot password",
+      error: error.message,
+    });
+  }
+};
+
 // test controller
 export const testController = (req, res) => {
-  res.send("Protected route");
+  try {
+    res.send("Protected route");
+  } catch (error) {
+    console.log(error);
+    res.send({ error });
+  }
 };

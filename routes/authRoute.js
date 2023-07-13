@@ -4,6 +4,7 @@ import {
   registerController,
   loginController,
   testController,
+  forgotPasswordController,
 } from "../controllers/authController.js";
 
 // Routing
@@ -14,6 +15,9 @@ router.post("/register", registerController);
 
 // Login || method : Post
 router.post("/login", loginController);
+
+//Forgot Password
+router.post("/forgot-password", forgotPasswordController);
 
 //test route
 router.get("/test", requireSignin, isAdmin, testController);
