@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AdminMenu } from "../../components/layout/AdminMenu";
-import Layout from "./../../components/layout/Layout";
+import Layout from "../../components/layout/Layout";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
@@ -30,7 +30,7 @@ const Products = () => {
         </div>
         <div className="col-md-9 ">
           <h1 className="text-center">All Products List</h1>
-          <div className="d-flex">
+          <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <Link
                 key={p._id}
