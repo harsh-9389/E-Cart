@@ -6,6 +6,9 @@ import {
   testController,
   forgotPasswordController,
   updateProfileController,
+  getOrdersController,
+  getAllOrdersController,
+  orderStatusController,
 } from "../controllers/authController.js";
 
 // Routing
@@ -35,5 +38,19 @@ router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
 
 //update user
 router.put("/profile", requireSignIn, updateProfileController);
+
+//order
+router.get("/orders", requireSignIn, getOrdersController);
+
+//order
+router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
+
+//order status
+router.put(
+  "/order-status/:orderId",
+  requireSignIn,
+  isAdmin,
+  orderStatusController
+);
 
 export default router;

@@ -7,6 +7,7 @@ import {
   singleCategoryController,
   updateCategoryController,
 } from "./../controllers/categoryController.js";
+import { get } from "mongoose";
 
 const router = express.Router();
 

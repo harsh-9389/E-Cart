@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+
 export const AdminMenu = () => {
   return (
     <>
@@ -23,6 +24,12 @@ export const AdminMenu = () => {
             className="list-group-item list-group-item-action"
           >
             Products
+          </NavLink>
+          <NavLink
+            to="/dashboard/admin/orders"
+            className="list-group-item list-group-item-action"
+          >
+            Orders
           </NavLink>
           <NavLink
             to="/dashboard/admin/users"
