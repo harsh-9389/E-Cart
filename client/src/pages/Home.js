@@ -146,7 +146,7 @@ const HomePage = () => {
               <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
                 <img
                   src={`/api/v1/product/product-photo/${p._id}`}
-                  className="card-img-top"
+                  className="card-img-top h-50"
                   alt={p.name}
                 />
                 <div className="card-body">
@@ -154,7 +154,7 @@ const HomePage = () => {
                   <p className="card-text">
                     {p.description.substring(0, 30)}...
                   </p>
-                  <p className="card-text"> $ {p.price}</p>
+                  <p className="card-text"> {p.price}$</p>
                   <button
                     className="btn btn-primary ms-1"
                     onClick={() => navigate(`/product/${p.slug}`)}

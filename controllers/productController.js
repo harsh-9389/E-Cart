@@ -1,5 +1,6 @@
 import fs from "fs";
 import productModel from "../models/productModel.js";
+import categoryModel from "../models/categoryModel.js";
 import slugify from "slugify";
 
 export const createProductController = async (req, res) => {
