@@ -1,17 +1,19 @@
 # ecommerce
 
-It is an ecommerce web application. Which I build for purpose of my project. 
+It is an e-commerce web application, that I built for the purpose of my project. 
 
 ## Initialization
 
-To start the project You just have to the below command in your codespace
+To start the project You have to do the below command in your codespace
 
 ```bash
 npm run dev
 ```
 
 ## Usage
-To practice and implementing the devlopment skills on a real life project to get an hands on experience.
+To practice and implement the development skills on a real-life project to get hands-on experience.
+
+<img width="929" alt="Screenshot 2023-08-26 023306" src="https://github.com/harsh-9389/ecommerce/assets/99734334/d9fc2148-5f85-4dde-8c50-002f454d1bb7">
 
 ## Contributing
 
