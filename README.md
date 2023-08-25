@@ -1,6 +1,6 @@
 # ecommerce
 
-It is an e-commerce web application, that I built for the purpose of my project. 
+It is an e-commerce web application that specifically focuses on the sell of Electronic devices, that I built for the purpose of my project. 
 
 ## Initialization
 
