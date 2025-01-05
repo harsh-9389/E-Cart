@@ -15,6 +15,7 @@ const CreateProduct = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
+  // eslint-disable-next-line
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
 
@@ -70,26 +71,29 @@ const CreateProduct = () => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Create Product</h1>
-            <div className="m-1 w-75">
-              <Select
-                bordered={false}
-                placeholder="Category of Product"
-                size="large"
-                showSearch
-                className="form-select mb-3"
-                onChange={(value) => {
-                  setCategory(value);
-                }}
-              >
-                {categories?.map((c) => (
-                  <Option key={c._id} value={c._id}>
-                    {c.name}
-                  </Option>
-                ))}
-              </Select>
+            <h1 className="text-center mb-4">Create Product</h1>
+            <div className="m-1 w-75 mx-auto">
+              {/* Category Select */}
               <div className="mb-3">
-                <label className="btn btn-outline-secondary col-md-12">
+                <Select
+                  bordered={false}
+                  placeholder="Category of Product"
+                  size="large"
+                  showSearch
+                  className="form-select mb-3"
+                  onChange={(value) => setCategory(value)}
+                >
+                  {categories?.map((c) => (
+                    <Option key={c._id} value={c._id}>
+                      {c.name}
+                    </Option>
+                  ))}
+                </Select>
+              </div>
+
+              {/* Photo Upload */}
+              <div className="mb-3">
+                <label className="btn btn-outline-secondary w-100">
                   {photo ? photo.name : "Upload Photo"}
                   <input
                     type="file"
@@ -100,18 +104,19 @@ const CreateProduct = () => {
                   />
                 </label>
               </div>
-              <div className="mb-3">
-                {photo && (
-                  <div className="text-center">
-                    <img
-                      src={URL.createObjectURL(photo)}
-                      alt="product_photo"
-                      height={"200px"}
-                      className="img img-responsive"
-                    />
-                  </div>
-                )}
-              </div>
+
+              {photo && (
+                <div className="text-center mb-3">
+                  <img
+                    src={URL.createObjectURL(photo)}
+                    alt="product_photo"
+                    height="200px"
+                    className="img img-responsive"
+                  />
+                </div>
+              )}
+
+              {/* Product Name */}
               <div className="mb-3">
                 <input
                   type="text"
@@ -121,16 +126,19 @@ const CreateProduct = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
+
+              {/* Description */}
               <div className="mb-3">
                 <textarea
-                  type="text"
                   value={description}
                   placeholder="Description of Product"
                   className="form-control"
+                  rows="3"
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
 
+              {/* Price */}
               <div className="mb-3">
                 <input
                   type="number"
@@ -140,32 +148,36 @@ const CreateProduct = () => {
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
+
+              {/* Quantity */}
               <div className="mb-3">
                 <input
                   type="number"
                   value={quantity}
-                  placeholder="Quantity available"
+                  placeholder="Quantity Available"
                   className="form-control"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
+
+              {/* Shipping */}
               <div className="mb-3">
                 <Select
                   bordered={false}
-                  placeholder="Select Shipping "
+                  placeholder="Select Shipping"
                   size="large"
                   showSearch
                   className="form-select mb-3"
-                  onChange={(value) => {
-                    setShipping(value);
-                  }}
+                  onChange={(value) => setShipping(value)}
                 >
                   <Option value="0">No</Option>
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
-              <div className="mb-3">
-                <button className="btn btn-primary" onClick={handleCreate}>
+
+              {/* Submit Button */}
+              <div className="mb-3 text-center">
+                <button className="btn btn-primary w-50" onClick={handleCreate}>
                   CREATE PRODUCT
                 </button>
               </div>

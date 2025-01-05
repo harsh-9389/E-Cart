@@ -91,6 +91,7 @@ const UpdateProduct = () => {
     try {
       let answer = window.prompt("Are You Sure want to delete this product ? ");
       if (!answer) return;
+      // eslint-disable-next-line 
       const { data } = await axios.delete(
         `/api/v1/product/delete-product/${id}`
       );
@@ -109,17 +110,16 @@ const UpdateProduct = () => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Update Product</h1>
+            <h1 className="text-center mb-4">Update Product</h1>
             <div className="m-1 w-75">
+              {/* Category Selection */}
               <Select
                 bordered={false}
                 placeholder="Select a category"
                 size="large"
                 showSearch
                 className="form-select mb-3"
-                onChange={(value) => {
-                  setCategory(value);
-                }}
+                onChange={(value) => setCategory(value)}
                 value={category}
               >
                 {categories?.map((c) => (
@@ -128,6 +128,8 @@ const UpdateProduct = () => {
                   </Option>
                 ))}
               </Select>
+
+              {/* Photo Upload */}
               <div className="mb-3">
                 <label className="btn btn-outline-secondary col-md-12">
                   {photo ? photo.name : "Upload Photo"}
@@ -140,86 +142,91 @@ const UpdateProduct = () => {
                   />
                 </label>
               </div>
-              <div className="mb-3">
+
+              {/* Display Uploaded or Existing Photo */}
+              <div className="mb-3 text-center">
                 {photo ? (
-                  <div className="text-center">
-                    <img
-                      src={URL.createObjectURL(photo)}
-                      alt="product_photo"
-                      height={"200px"}
-                      className="img img-responsive"
-                    />
-                  </div>
+                  <img
+                    src={URL.createObjectURL(photo)}
+                    alt="product_photo"
+                    height="200"
+                    className="img img-responsive"
+                  />
                 ) : (
-                  <div className="text-center">
-                    <img
-                      src={`/api/v1/product/product-photo/${id}`}
-                      alt="product_photo"
-                      height={"200px"}
-                      className="img img-responsive"
-                    />
-                  </div>
+                  <img
+                    src={`/api/v1/product/product-photo/${id}`}
+                    alt="product_photo"
+                    height="200"
+                    className="img img-responsive"
+                  />
                 )}
               </div>
+
+              {/* Product Name */}
               <div className="mb-3">
                 <input
                   type="text"
                   value={name}
-                  placeholder="write a name"
+                  placeholder="Write a name"
                   className="form-control"
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
+
+              {/* Product Description */}
               <div className="mb-3">
                 <textarea
                   type="text"
                   value={description}
-                  placeholder="write a description"
+                  placeholder="Write a description"
                   className="form-control"
                   onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
 
+              {/* Product Price */}
               <div className="mb-3">
                 <input
                   type="number"
                   value={price}
-                  placeholder="write a Price"
+                  placeholder="Write a price"
                   className="form-control"
                   onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
+
+              {/* Product Quantity */}
               <div className="mb-3">
                 <input
                   type="number"
                   value={quantity}
-                  placeholder="write a quantity"
+                  placeholder="Write a quantity"
                   className="form-control"
                   onChange={(e) => setQuantity(e.target.value)}
                 />
               </div>
+
+              {/* Shipping Selection */}
               <div className="mb-3">
                 <Select
                   bordered={false}
-                  placeholder="Select Shipping "
+                  placeholder="Select Shipping"
                   size="large"
                   showSearch
                   className="form-select mb-3"
-                  onChange={(value) => {
-                    setShipping(value);
-                  }}
-                  value={shipping ? "yes" : "No"}
+                  onChange={(value) => setShipping(value)}
+                  value={shipping ? "Yes" : "No"}
                 >
                   <Option value="0">No</Option>
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
-              <div className="mb-3 d-flex">
+
+              {/* Buttons */}
+              <div className="mb-3 d-flex justify-content-between">
                 <button className="btn btn-primary" onClick={handleUpdate}>
                   UPDATE PRODUCT
                 </button>
-              </div>
-              <div className="mb-3">
                 <button className="btn btn-danger" onClick={handleDelete}>
                   DELETE PRODUCT
                 </button>

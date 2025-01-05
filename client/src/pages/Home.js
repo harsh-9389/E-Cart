@@ -111,9 +111,9 @@ const HomePage = () => {
   return (
     <Layout title={"ALl Products - Best offers "}>
       <HomeSlider />
-      <div className="container-fluid row mt-3">
-        <div className="col-md-2">
-          <h4 className="text-center">Filter By Category</h4>
+      <div className="container-fluid row mt-4">
+        <div className="col-md-2 bg-light p-3 rounded shadow-sm">
+          <h4 className="text-center mb-3 text-primary">Filter By Category</h4>
           <div className="d-flex flex-column">
             {categories?.map((c) => (
               <Checkbox
@@ -124,20 +124,19 @@ const HomePage = () => {
               </Checkbox>
             ))}
           </div>
-          {/* price filter */}
-          <h4 className="text-center mt-4">Filter By Price</h4>
+          <h4 className="text-center mt-4 text-primary">Filter By Price</h4>
           <div className="d-flex flex-column">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
-                <div key={p._id}>
+                <div key={p._id} className="mb-2">
                   <Radio value={p.array}>{p.name}</Radio>
                 </div>
               ))}
             </Radio.Group>
           </div>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column mt-3">
             <button
-              className="btn btn-danger"
+              className="btn btn-danger w-100"
               onClick={() => window.location.reload()}
             >
               RESET FILTERS
@@ -145,47 +144,51 @@ const HomePage = () => {
           </div>
         </div>
         <div className="col-md-10">
-          {/* {JSON.stringify(checked, null, 4)} */}
-          <h1 className="text-center">All Products</h1>
-          <div className="d-flex flex-wrap">
-            {products?.map((p, ind) => (
-              <div className="card m-2" style={{ width: "18rem" }} key={p._id}>
-                <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
-                  className="card-img-top h-50"
-                  alt={p.name}
-                />
-                <div className="card-body">
-                  <h5 className="card-title">{p.name}</h5>
-                  <p className="card-text">
-                    {p.description.substring(0, 30)}...
-                  </p>
-                  <p className="card-text"> {p.price}$</p>
-                  <button
-                    className="btn btn-primary ms-1"
-                    onClick={() => navigate(`/product/${p.slug}`)}
-                  >
-                    More Details
-                  </button>
-                  <button
-                    className="btn btn-secondary ms-1"
-                    onClick={() => {
-                      setCart([...cart, p]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, p])
-                      );
-                      toast.success("Item added to cart");
-                    }}
-                  >
-                    ADD TO CART
-                  </button>
+          <h1 className="text-center mb-4 text-success">All Products</h1>
+          <div className="row">
+            {products?.map((p) => (
+              <div className="col-md-4 mb-4" key={p._id}>
+                <div className="card shadow-sm h-100">
+                  <img
+                    src={`/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                    style={{ height: "300px", objectFit: "contain" }}
+                  />
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title">{p.name}</h5>
+                    <p className="card-text">
+                      {p.description.substring(0, 50)}...
+                    </p>
+                    <p className="card-text fw-bold">Price: ${p.price}</p>
+                    <div className="mt-auto">
+                      <button
+                        className="btn btn-primary w-100 mb-2"
+                        onClick={() => navigate(`/product/${p.slug}`)}
+                      >
+                        More Details
+                      </button>
+                      <button
+                        className="btn btn-secondary w-100"
+                        onClick={() => {
+                          setCart([...cart, p]);
+                          localStorage.setItem(
+                            "cart",
+                            JSON.stringify([...cart, p])
+                          );
+                          toast.success("Item added to cart");
+                        }}
+                      >
+                        ADD TO CART
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
-          <div className="m-2 p-3">
-            {products && products.length < total && (
+          {products && products.length < total && (
+            <div className="text-center">
               <button
                 className="btn btn-warning"
                 onClick={(e) => {
@@ -193,10 +196,10 @@ const HomePage = () => {
                   setPage(page + 1);
                 }}
               >
-                {loading ? "Loading ..." : "Loadmore"}
+                {loading ? "Loading ..." : "Load More"}
               </button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </Layout>

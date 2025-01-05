@@ -94,49 +94,46 @@ const CreateCategory = () => {
             <AdminMenu />
           </div>
           <div className="col-md-9">
-            <h1>Manage Category</h1>
-            <div className="p-3 w-50">
+            <h1 className="text-center mb-4">Manage Categories</h1>
+            <div className="p-3 mb-4" style={{ maxWidth: "500px" }}>
+              <h5>Add New Category</h5>
               <CategoryForm
                 handleSubmit={handleSubmit}
                 value={name}
                 setValue={setName}
               />
             </div>
-            <div className="w-75">
-              <table className="table">
-                <thead>
+            <div className="table-responsive">
+              <table className="table table-bordered">
+                <thead className="table-light">
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col" className="text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {categories?.map((c) => (
-                    <>
-                      <tr>
-                        <td key={c._id}>{c.name}</td>
-                        <td>
-                          <button
-                            className="btn btn-primary ms-2"
-                            onClick={() => {
-                              setVisible(true);
-                              setUpdatedName(c.name);
-                              setSelected(c);
-                            }}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="btn btn-danger ms-2"
-                            onClick={() => {
-                              handleDelete(c._id);
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    </>
+                    <tr key={c._id}>
+                      <td>{c.name}</td>
+                      <td className="text-center">
+                        <button
+                          className="btn btn-primary btn-sm me-2"
+                          onClick={() => {
+                            setVisible(true);
+                            setUpdatedName(c.name);
+                            setSelected(c);
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn btn-danger btn-sm"
+                          onClick={() => handleDelete(c._id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
                   ))}
                 </tbody>
               </table>
@@ -146,6 +143,7 @@ const CreateCategory = () => {
               footer={null}
               visible={visible}
             >
+              <h5>Edit Category</h5>
               <CategoryForm
                 value={updatedName}
                 setValue={setUpdatedName}

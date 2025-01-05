@@ -25,27 +25,40 @@ const Products = () => {
   return (
     <Layout>
       <div className="row">
+        {/* Sidebar */}
         <div className="col-md-2">
           <AdminMenu />
         </div>
+
+        {/* Products Section */}
         <div className="col-md-10">
-          <h1 className="text-center">All Products List</h1>
-          <div className="d-flex flex-wrap">
+          <h1 className="text-center mb-4">All Products List</h1>
+
+          {/* Products Grid */}
+          <div className="d-flex flex-wrap justify-content-center">
             {products?.map((p) => (
               <Link
                 key={p._id}
                 to={`/dashboard/admin/product/${p.slug}`}
-                className="product-link"
+                className="product-link text-decoration-none"
               >
-                <div className="card m-2" style={{ width: "18rem" }}>
+                <div className="card m-3" style={{ width: "18rem" }}>
+                  {/* Product Image */}
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top h-50"
+                    className="card-img-top"
                     alt={p.name}
+                    style={{ height: "200px", objectFit: "contain" }}
                   />
-                  <div className="card-body">
+
+                  {/* Product Details */}
+                  <div className="card-body text-center">
                     <h5 className="card-title">{p.name}</h5>
-                    <p className="card-text">{p.description}</p>
+                    <p className="card-text">
+                      {p.description.length > 50
+                        ? `${p.description.substring(0, 50)}...`
+                        : p.description}
+                    </p>
                   </div>
                 </div>
               </Link>

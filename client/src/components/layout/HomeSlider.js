@@ -29,9 +29,9 @@ const HomeSlider = () => {
                         M75 Sport Watch
                       </h2>
                       <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua.
+                        Stylish and elegant design, perfect for any occasion.
+                        Must have offer for you.
+                        Only for the limmited time.
                       </p>
                       <h3>
                         <span>Now Only</span> $120.99
@@ -69,7 +69,7 @@ const HomeSlider = () => {
                     <div className="content">
                       <h2>
                         <span>Newly Arrived</span>
-                        iPhone 12 Pro Max
+                        iPhone 14 Pro Max
                       </h2>
                       <h3>$230</h3>
                       <button
@@ -81,7 +81,7 @@ const HomeSlider = () => {
                           padding: "0.6rem",
                           margin: "1rem",
                         }}
-                        onClick={() => navigate(`/product/iPhone-12-Pro-max`)}
+                        onClick={() => navigate(`/product/iPhone-14-Pro-max`)}
                       >
                         Shop Now
                       </button>

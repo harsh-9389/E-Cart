@@ -81,37 +81,39 @@ const CartPage = () => {
 
   return (
     <Layout>
-      <div className="container">
+      <div className="container mt-3">
         <div className="row">
           <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
+            <h1 className="text-center bg-light p-3 mb-3 rounded">
               {`Hello ${auth?.token && auth?.user?.name}`}
             </h1>
-            <h4 className="text-center">
+            <h4 className="text-center mb-4">
               {cart?.length
-                ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout"
+                ? `You have ${cart.length} item(s) in your cart ${auth?.token ? "" : "please login to checkout"
                 }`
-                : " Your Cart Is Empty"}
+                : "Your Cart is Empty"}
             </h4>
           </div>
         </div>
         <div className="row">
+          {/* Cart Items */}
           <div className="col-md-8">
             {cart?.map((p) => (
-              <div className="row mb-2 p-3 card flex-row">
-                <div className="col-md-4">
+              <div className="row mb-3 p-3 card flex-row align-items-center shadow">
+                <div className="col-md-4 text-center">
                   <img
                     src={`/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
+                    className="img-fluid rounded"
                     alt={p.name}
-                    width="100px"
-                    height={"100px"}
+                    style={{ maxHeight: "150px" }}
                   />
                 </div>
                 <div className="col-md-8">
-                  <p>{p.name}</p>
-                  <p>{p.description?.substring(0, 30)}</p>
-                  <p>Price : {p.price}</p>
+                  <h5>{p.name}</h5>
+                  <p>{p.description?.substring(0, 30)}...</p>
+                  <p>
+                    <strong>Price:</strong> ${p.price}
+                  </p>
                   <button
                     className="btn btn-danger"
                     onClick={() => removeCartItem(p._id)}
@@ -122,76 +124,76 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="col-md-4 text-center">
-            <h2>Cart Summary</h2>
-            <p>Total | Checkout | Payment</p>
-            <hr />
-            <h4>Total : {totalPrice()} </h4>
-            {auth?.user?.address ? (
-              <>
+
+          {/* Cart Summary */}
+          <div className="col-md-4">
+            <div className="card p-3 shadow">
+              <h2 className="text-center">Cart Summary</h2>
+              <p className="text-center">Total | Checkout | Payment</p>
+              <hr />
+              <h4 className="text-center mb-3">Total: {totalPrice()}</h4>
+
+              {/* Address Section */}
+              {auth?.user?.address ? (
                 <div className="mb-3">
-                  <h4>Current Address</h4>
-                  <h5>{auth?.user?.address}</h5>
+                  <h5>Current Address</h5>
+                  <p>{auth?.user?.address}</p>
                   <button
-                    className="btn btn-outline-warning"
+                    className="btn btn-outline-warning w-100"
                     onClick={() => navigate("/dashboard/user/profile")}
                   >
                     Update Address
                   </button>
                 </div>
-              </>
-            ) : (
-              <div className="mb-3">
-                {auth?.token ? (
-                  <button
-                    className="btn btn-outline-warning"
-                    onClick={() => navigate("/dashboard/user/profile")}
-                  >
-                    Update Address
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-outline-warning"
-                    onClick={() =>
-                      navigate("/login", {
-                        state: "/cart",
-                      })
-                    }
-                  >
-                    Please Login to checkout
-                  </button>
-                )}
-              </div>
-            )}
-
-            <div className="mt-2">
-              {!clientToken || !cart?.length ? (
-                ""
               ) : (
-                <>
+                <div className="mb-3">
+                  {auth?.token ? (
+                    <button
+                      className="btn btn-outline-warning w-100"
+                      onClick={() => navigate("/dashboard/user/profile")}
+                    >
+                      Add Address
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-outline-warning w-100"
+                      onClick={() =>
+                        navigate("/login", {
+                          state: "/cart",
+                        })
+                      }
+                    >
+                      Please Login to Checkout
+                    </button>
+                  )}
+                </div>
+              )}
+
+              {/* Payment Section */}
+              {clientToken && cart?.length > 0 && (
+                <div className="mt-3">
                   <DropIn
                     options={{
                       authorization: clientToken,
-                      paypal: {
-                        flow: "vault",
-                      },
+                      paypal: { flow: "vault" },
                     }}
                     onInstance={(instance) => setInstance(instance)}
                   />
-
                   <button
-                    className="btn btn-primary"
+                    className={`btn btn-primary w-100 ${loading ? "text-secondary" : ""
+                      }`}
                     onClick={handlePayment}
                     disabled={loading || !instance || !auth?.user?.address}
                   >
                     {loading ? "Processing ...." : "Make Payment"}
                   </button>
-                </>
+                </div>
               )}
             </div>
           </div>
         </div>
       </div>
+
     </Layout>
   );
 };

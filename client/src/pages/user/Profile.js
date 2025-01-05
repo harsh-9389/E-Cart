@@ -54,67 +54,80 @@ const Profile = () => {
     <Layout title={"Your Profile"}>
       <div className="container-fluid m-3 p-3">
         <div className="row">
+          {/* User Menu */}
           <div className="col-md-3">
             <UserMenu />
           </div>
+
+          {/* User Profile Form */}
           <div className="col-md-9">
-            <div className="form-container ">
-              <form onSubmit={handleSubmit}>
-                <h4 className="title">USER PROFILE</h4>
+            <div className="form-container">
+              <form onSubmit={handleSubmit} className="p-4 shadow rounded bg-white">
+                <h4 className="text-center mb-4">USER PROFILE</h4>
+
+                {/* Name Field */}
                 <div className="mb-3">
                   <input
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="form-control"
-                    id="exampleInputEmail1"
                     placeholder="Enter Your Name"
                     autoFocus
+                    aria-label="Name"
                   />
                 </div>
+
+                {/* Email Field (Disabled) */}
                 <div className="mb-3">
                   <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
                     className="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Enter Your Email "
+                    placeholder="Enter Your Email"
                     disabled
+                    aria-label="Email"
                   />
                 </div>
+
+                {/* Password Field */}
                 <div className="mb-3">
                   <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Enter Your Password"
+                    placeholder="Enter New Password (Leave blank to keep current password)"
+                    aria-label="Password"
                   />
                 </div>
+
+                {/* Phone Field */}
                 <div className="mb-3">
                   <input
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     className="form-control"
-                    id="exampleInputEmail1"
-                    placeholder="Enter Your Phone"
+                    placeholder="Enter Your Phone Number"
+                    aria-label="Phone"
                   />
                 </div>
+
+                {/* Address Field */}
                 <div className="mb-3">
                   <input
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     className="form-control"
-                    id="exampleInputEmail1"
                     placeholder="Enter Your Address"
+                    aria-label="Address"
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary">
+                {/* Submit Button */}
+                <button type="submit" className="btn btn-primary w-100">
                   UPDATE
                 </button>
               </form>

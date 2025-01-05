@@ -25,7 +25,7 @@ const Spinner = ({ path = "login" }) => {
       >
         <h1 className="Text-center">redirecting to you in {count} seconds</h1>
         <div className="spinner-border" role="status">
-          <span className="sr-only">Loading...</span>
+          <span className="sr-only"></span>
         </div>
       </div>
     </>
