@@ -8,6 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const CartPage = () => {
+  // eslint-disable-next-line
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const CartPage = () => {
       let total = 0;
       cart?.map((item) => {
         total = total + item.price;
+        return null;
       });
       return total.toLocaleString("en-US", {
         style: "currency",
@@ -30,7 +32,7 @@ const CartPage = () => {
       console.log(error);
     }
   };
-  //detele item
+  //delete item
   const removeCartItem = (pid) => {
     try {
       let myCart = [...cart];
@@ -61,6 +63,7 @@ const CartPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
+      // eslint-disable-next-line
       const { data } = await axios.post("/api/v1/product/braintree/payment", {
         nonce,
         cart,
@@ -86,9 +89,8 @@ const CartPage = () => {
             </h1>
             <h4 className="text-center">
               {cart?.length
-                ? `You Have ${cart.length} items in your cart ${
-                    auth?.token ? "" : "please login to checkout"
-                  }`
+                ? `You Have ${cart.length} items in your cart ${auth?.token ? "" : "please login to checkout"
+                }`
                 : " Your Cart Is Empty"}
             </h4>
           </div>
@@ -108,7 +110,7 @@ const CartPage = () => {
                 </div>
                 <div className="col-md-8">
                   <p>{p.name}</p>
-                  <p>{p.description.substring(0, 30)}</p>
+                  <p>{p.description?.substring(0, 30)}</p>
                   <p>Price : {p.price}</p>
                   <button
                     className="btn btn-danger"
@@ -156,7 +158,7 @@ const CartPage = () => {
                       })
                     }
                   >
-                    Plase Login to checkout
+                    Please Login to checkout
                   </button>
                 )}
               </div>

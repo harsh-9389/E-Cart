@@ -35,7 +35,7 @@ export const registerController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "error in resistration",
+      message: "error in registration",
       error: error.message,
     });
   }

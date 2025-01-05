@@ -35,85 +35,87 @@ const Register = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("sommething went wrong");
+      toast.error("something went wrong");
     }
   };
 
   return (
     <Layout title="Ecommerce: Register">
-      <div className="register">
-        <h1>Rgister Page</h1>
-        <form onSubmit={handlesubmit}>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-control"
-              id="exampleInputName"
-              placeholder="Name"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Password"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="number"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="form-control"
-              id="exampleInputPhone"
-              placeholder="phone no."
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="form-control"
-              id="exampleInputAddress"
-              placeholder="Address"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputAnswer"
-              placeholder="what is your favourite color?"
-              required
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+      <div className="register d-flex align-items-center justify-content-center bg-light min-vh-100">
+        <div className="card shadow-lg p-4 w-100" style={{ maxWidth: "400px" }}>
+          <h1 className="text-center mb-4">Register Page</h1>
+          <form onSubmit={handlesubmit}>
+            <div className="mb-3">
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-control"
+                id="exampleInputName"
+                placeholder="Name"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail1"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="Password"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="number"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="form-control"
+                id="exampleInputPhone"
+                placeholder="Phone no."
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                className="form-control"
+                id="exampleInputAddress"
+                placeholder="Address"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="form-control"
+                id="exampleInputAnswer"
+                placeholder="What is your favourite color?"
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary w-100">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </Layout>
   );

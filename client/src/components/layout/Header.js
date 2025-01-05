@@ -6,11 +6,13 @@ import SearchInput from "../form/SearchInput";
 import useCategory from "../../hooks/useCategory";
 import { useCart } from "../../context/cart";
 import { Badge } from "antd";
+import logo from "../../images/eCart.png";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
   const categories = useCategory();
+
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -22,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <>
+    <header>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <button
@@ -36,19 +38,42 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon" />
           </button>
+
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <Link to="/" className="navbar-brand">
-              🛒 Ecommerce App
-            </Link>
+            <img
+              src={logo}
+              alt="logo"
+              height="50"
+              width="50"
+              style={{ marginLeft: "1rem" }}
+            />
+            <span
+              style={{
+                fontSize: "2rem",
+                marginTop: "20px",
+                fontFamily: "sans-serif",
+                fontWeight: "bold",
+                fontStyle: "italic",
+              }}
+            >
+              Cart
+            </span>
+
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <SearchInput />
-              <li className="nav-item">
-                <NavLink to="/" className="nav-link ">
+              <li style={{ marginRight: "6rem", marginTop: "0.3rem" }}>
+                <SearchInput />
+              </li>
+
+              <li className="nav-item" style={{ marginRight: "1.5rem" }}>
+                <NavLink to="/" className="nav-link">
                   Home
                 </NavLink>
               </li>
 
-              <li className="nav-item dropdown">
+              <li
+                className="nav-item dropdown"
+                style={{ marginRight: "1.5rem" }}
+              >
                 <Link
                   className="nav-link dropdown-toggle"
                   to={"/categories"}
@@ -77,12 +102,12 @@ const Header = () => {
 
               {!auth.user ? (
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item" style={{ marginRight: "1.5rem" }}>
                     <NavLink to="/register" className="nav-link">
                       Register
                     </NavLink>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item" style={{ marginRight: "2rem" }}>
                     <NavLink to="/login" className="nav-link">
                       Login
                     </NavLink>
@@ -90,13 +115,13 @@ const Header = () => {
                 </>
               ) : (
                 <>
-                  <li className="nav-item dropdown">
+                  <li
+                    className="nav-item dropdown"
+                    style={{ marginRight: "1.5rem" }}
+                  >
                     <NavLink
                       className="nav-link dropdown-toggle"
-                      href="#"
-                      role="button"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
                     >
                       {auth?.user?.name}
                     </NavLink>
@@ -113,7 +138,7 @@ const Header = () => {
                       </li>
                       <li>
                         <NavLink
-                          to="/login"
+                          to="/"
                           onClick={handleLogout}
                           className="dropdown-item"
                         >
@@ -136,7 +161,7 @@ const Header = () => {
           </div>
         </div>
       </nav>
-    </>
+    </header>
   );
 };
 

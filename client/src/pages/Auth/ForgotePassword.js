@@ -34,46 +34,50 @@ const ForgotePassword = () => {
 
   return (
     <Layout title={"forgot password"}>
-      <div className="register">
-        <h1>Reset Password</h1>
-        <form onSubmit={handlesubmit}>
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputAnswer"
-              placeholder="what is yout favourite color?"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="New Password"
-              required
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Reser
-          </button>
-        </form>
+      <div className="register d-flex align-items-center justify-content-center bg-light min-vh-100">
+        <div className="card shadow-lg p-4 w-100" style={{ maxWidth: "400px" }}>
+          <h1 className="text-center mb-4">Reset Password</h1>
+          <form onSubmit={handlesubmit}>
+            <div className="mb-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="form-control"
+                id="exampleInputEmail1"
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="text"
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+                className="form-control"
+                id="exampleInputAnswer"
+                placeholder="What is your favourite color?"
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                className="form-control"
+                id="exampleInputPassword1"
+                placeholder="New Password"
+                required
+              />
+            </div>
+            <div className="d-grid">
+              <button type="submit" className="btn btn-primary">
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </Layout>
   );
